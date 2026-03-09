@@ -52,3 +52,10 @@ def test_nested_json():
     result = runner.invoke(app, input=json.dumps(data))
     assert result.exit_code == 0
     assert '"deep"' in result.output
+
+
+def test_compact_output():
+    data = {"name": "test", "value": 42}
+    result = runner.invoke(app, ["--compact"], input=json.dumps(data))
+    assert result.exit_code == 0
+    assert "\n" not in result.output.strip()
