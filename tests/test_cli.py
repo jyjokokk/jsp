@@ -3,7 +3,7 @@ import tempfile
 
 from typer.testing import CliRunner
 
-from jsp.cli import app
+from jspprint.cli import app
 
 runner = CliRunner()
 

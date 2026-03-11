@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from jsp.io import filter_by_key, print_json, update_json
+from jspprint.io import filter_by_key, print_json, update_json
 
 
 class TestFilterByKey:

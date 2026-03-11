@@ -1,4 +1,4 @@
-# jsp
+# jspprint
 
 A CLI tool for viewing and manipulating JSON files. Pretty-prints JSON with syntax highlighting by default, supports filtering by keys, and allows in-memory modifications for easy piping — without altering the original file.
 
@@ -8,7 +8,7 @@ A CLI tool for viewing and manipulating JSON files. Pretty-prints JSON with synt
 - **Filter by key(s)** to extract and display specific parts of a JSON structure
 - **In-memory modifications** — add, update, replace, or delete values in the output without touching the source file
 - **Merge from file or stdin** — set a key's value to the contents of another JSON file, or pipe JSON in via stdin
-- **Stdin as input** — read JSON from stdin instead of a file (`cat data.json | jsp`)
+- **Stdin as input** — read JSON from stdin instead of a file (`cat data.json | jspprint`)
 - **Pipe-friendly** — output can be piped to other commands or redirected to files
 
 ## Planned
@@ -23,41 +23,45 @@ A CLI tool for viewing and manipulating JSON files. Pretty-prints JSON with synt
 
 ## Installation
 
-> Coming soon — Homebrew tap planned as the first distribution target.
+```sh
+pip install jspprint
+# or
+pipx install jspprint
+```
 
 ## Usage
 
 ```sh
 # Pretty-print a JSON file with syntax highlighting
-jsp data.json
+jspprint data.json
 
 # Read JSON from stdin
-cat data.json | jsp
+cat data.json | jspprint
 
 # Filter by key
-jsp data.json name
+jspprint data.json name
 
 # Filter by nested key path
-jsp data.json users.0.email
+jspprint data.json users.0.email
 
 # Modify a value in the output (file is not changed)
-jsp data.json --set name=updated
+jspprint data.json --set name=updated
 
 # Delete a key from the output
-jsp data.json --del obsoleteField
+jspprint data.json --del obsoleteField
 
 # Set a key's value from another JSON file
-jsp data.json --set config=@overrides.json
+jspprint data.json --set config=@overrides.json
 
 # Same thing via stdin pipe
-cat overrides.json | jsp data.json --set config=@-
+cat overrides.json | jspprint data.json --set config=@-
 
 # Output compact JSON (single line, no highlighting)
-jsp data.json --compact
-jsp data.json -c
+jspprint data.json --compact
+jspprint data.json -c
 
 # Pipe the result
-jsp data.json --set env=prod -c | kubectl apply -f -
+jspprint data.json --set env=prod -c | kubectl apply -f -
 ```
 
 ## License

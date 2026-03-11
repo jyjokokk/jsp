@@ -16,21 +16,21 @@ classifiers = [
 dependencies = ["rich>=14.3.3", "typer>=0.24.1"]
 
 [project.scripts]
-jsp = "jsp.cli:app"
+jspprint = "jspprint.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/jyjokokk/jsp"
-Repository = "https://github.com/jyjokokk/jsp"
+Homepage = "https://github.com/jyjokokk/jspprint"
+Repository = "https://github.com/jyjokokk/jspprint"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/jsp"]
+packages = ["src/jspprint"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src/jsp/", "README.md", "LICENSE", "pyproject.toml"]
+include = ["src/jspprint/", "README.md", "LICENSE", "pyproject.toml"]
 
 [dependency-groups]
 dev = ["pytest>=9.0.2", "ruff>=0.15.5"]
