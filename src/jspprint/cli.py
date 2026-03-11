@@ -4,7 +4,8 @@ from typing import Optional
 
 import typer
 
-from jspprint.io import filter_by_key, print_csv, print_json, read_csv, read_json, update_json
+from jspprint.csv_io import print_csv, read_csv
+from jspprint.json_io import filter_by_key, print_json, read_json, update_json
 
 app = typer.Typer()
 
@@ -77,7 +78,7 @@ def main(
             data = update_json(data, k, v)
 
     if delete:
-        from jspprint.io import _traverse
+        from jspprint.json_io import _traverse
 
         for k in delete:
             try:

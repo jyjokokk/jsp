@@ -1,13 +1,10 @@
-"""Functions for handling STDIN and STDOUT operations."""
+"""Functions for reading, writing, and manipulating JSON data."""
 
-import csv
 import json
 import sys
-from io import StringIO
 from typing import Any
 
 from rich.console import Console
-from rich.table import Table
 
 console = Console()
 
@@ -61,37 +58,6 @@ def _traverse(data, key: str, stop_before_last: bool = False) -> tuple[Any, str]
 def filter_by_key(data: dict, key: str) -> dict:
     """Filter a dictionary by a key, supporting dot notation for nested access."""
     return {key: _traverse(data, key)}
-
-
-def read_csv(file_path: str, delimiter: str = ",") -> list[list[str]]:
-    """Read CSV from a file path."""
-    try:
-        with open(file_path, newline="") as f:
-            return list(csv.reader(f, delimiter=delimiter))
-    except csv.Error as e:
-        raise ValueError(f"Invalid CSV from {file_path}: {e}") from e
-
-
-def print_csv(rows: list[list[str]], header: bool = True) -> None:
-    """Print CSV data as a rich table with columns."""
-    if not rows:
-        return
-
-    table = Table(show_header=header)
-
-    if header:
-        for col in rows[0]:
-            table.add_column(col)
-        data_rows = rows[1:]
-    else:
-        for i in range(len(rows[0])):
-            table.add_column(f"Col {i + 1}")
-        data_rows = rows
-
-    for row in data_rows:
-        table.add_row(*row)
-
-    console.print(table)
 
 
 def update_json(data: dict, key: str, value) -> dict:
